@@ -16,16 +16,17 @@ class UserController extends Controller
 
     public function create(Request $request)
 {
-    $data = [
-        'nombre' => 'Juan Pérez',
-        'correo' => 'juan.perez@example.com',
-        'saldo' => 1000,
-    ];
+    $data = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'correo' => 'required|email|unique:usuarios,correo',
+        'saldo' => 'required|numeric',
+    ]);
 
+    // Ahora los datos vienen del request
     $user = $this->userService->createUser($data);
     return response()->json($user, 201);
-
 }
+
 
 public function update($id, Request $request)
 {
