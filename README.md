@@ -1,66 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Instrucciones para ejecutar el proyecto localmente
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto está construido con Laravel y proporciona una API para gestionar apuestas deportivas. A continuación, se detallan los pasos para ejecutar el proyecto localmente.
 
-## About Laravel
+1. Clonar el repositorio
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Si el proyecto está en un repositorio remoto (por ejemplo, en GitHub), clónalo en tu máquina local utilizando el siguiente comando:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+git clone https://github.com/usuario/repositorio.git
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Asegúrate de reemplazar https://github.com/usuario/repositorio.git por la URL del repositorio del proyecto.
 
-## Learning Laravel
+2. Instalar dependencias del proyecto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Una vez clonado el repositorio, navega a la carpeta del proyecto:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+cd nombre-del-proyecto
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Luego, instala las dependencias necesarias utilizando Composer:
 
-## Laravel Sponsors
+- Si no tienes Composer instalado, sigue las instrucciones en https://getcomposer.org/download/.
+- Una vez que Composer esté instalado, ejecuta:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+composer install
 
-### Premium Partners
+Esto descargará e instalará todas las dependencias necesarias para el proyecto.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. Configurar el entorno
 
-## Contributing
+En la raíz del proyecto, encontrarás un archivo .env.example. Haz una copia de este archivo y renómbralo a .env. Puedes hacerlo ejecutando el siguiente comando:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+cp .env.example .env
 
-## Code of Conduct
+Ahora, abre el archivo .env y configura las siguientes variables de entorno, especialmente las relacionadas con la conexión a la base de datos:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nombre_de_tu_base_de_datos
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_contraseña
 
-## Security Vulnerabilities
+Asegúrate de remplazar nombre_de_tu_base_de_datos, tu_usuario, y tu_contraseña con los valores correctos de tu configuración de base de datos local.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Generar la clave de la aplicación
 
-## License
+Laravel requiere una clave única para tu aplicación. Ejecuta el siguiente comando para generar y configurar esta clave automáticamente:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+php artisan key:generate
+
+5. Configurar la base de datos
+
+Asegúrate de que el servidor de base de datos (como MySQL o PostgreSQL) esté corriendo y correctamente configurado.
+
+Luego, puedes crear las tablas de la base de datos ejecutando las migraciones:
+
+php artisan migrate
+
+Si tienes semillas de base de datos para poblar la base con datos iniciales, puedes ejecutar:
+
+php artisan db:seed
+
+6. Servir el proyecto localmente
+
+Una vez configurado todo lo anterior, puedes iniciar el servidor de desarrollo de Laravel utilizando el siguiente comando:
+
+php artisan serve
+
+Esto iniciará el servidor y podrás acceder a la aplicación en tu navegador usando la siguiente URL:
+
+http://127.0.0.1:8000
+
+7. Verificar el funcionamiento de la API
+
+Puedes probar que la API está funcionando correctamente utilizando un navegador o una herramienta como Postman. Accede a la siguiente URL para ver todos los eventos deportivos registrados:
+
+http://127.0.0.1:8000/api/eventos
+
+Esto debería devolver una lista de eventos deportivos si todo está funcionando correctamente.
+
+Notas adicionales
+
+- Base de datos: Asegúrate de que el servidor de base de datos (MySQL, PostgreSQL, etc.) esté corriendo y configurado correctamente.
+- Autenticación: Si el proyecto utiliza autenticación (como JWT o Passport), sigue los pasos adicionales de configuración que se describan en la documentación del proyecto.
+
+Problemas comunes
+
+- Si recibes un error relacionado con la conexión a la base de datos, asegúrate de que los datos en el archivo .env son correctos y que el servidor de base de datos está en ejecución.
+- Si las migraciones no se ejecutan correctamente, revisa los errores en la terminal y asegúrate de que tu base de datos esté configurada correctamente.
+
+¡Listo! Ahora deberías poder ejecutar el proyecto localmente y empezar a trabajar en él. Si tienes alguna duda o problema, no dudes en revisar los logs de Laravel o consultar con el equipo de desarrollo.
