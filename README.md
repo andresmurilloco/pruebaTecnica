@@ -74,7 +74,7 @@ http://127.0.0.1:8000
 
 Puedes probar que la API está funcionando correctamente utilizando un navegador o una herramienta como Postman. Accede a la siguiente URL para ver todos los eventos deportivos registrados:
 
-Crear Usuario: 
+#Crear Usuario: 
 
 Endpoint: http://127.0.0.1:8000/api/usuarios
 
@@ -84,7 +84,7 @@ Body: {
   "saldo": 10.15
 }
 
-Actualizar Usuario:
+#Actualizar Usuario:
 
 Endpoint: http://127.0.0.1:8000/api/usuarios/1
 
@@ -94,7 +94,7 @@ Body: {
   "saldo": 5000
 }
 
-Nueva apuesta: 
+#Nueva apuesta: 
 
 Endpoint: http://127.0.0.1:8000/api/apuestas
 
@@ -106,7 +106,7 @@ Body: {
     "estado": "pendiente"
 }
 
-Actualizar estado de apuesta:
+#Actualizar estado de apuesta:
 
 Endpoint: http://127.0.0.1:8000/api/apuestas/11
 
@@ -114,13 +114,13 @@ Body: {
     "estado": "ganada"
 }
 
-Obtener todas las apuestas del usuario:
+#Obtener todas las apuestas del usuario:
 Endpoint: http://127.0.0.1:8000/api/apuestas/usuario/{id}
 
-Obtener todas las apuestas del usuario con filtro:
+#Obtener todas las apuestas del usuario con filtro:
 Endpoint: http://127.0.0.1:8000/api/apuestas/usuario/1?estado=ganada //Ganada, Perdida o Pendiente
 
-Obtener todos los eventos:
+#Obtener todos los eventos:
 Endpoint: http://127.0.0.1:8000/api/eventos
 
 Notas adicionales
