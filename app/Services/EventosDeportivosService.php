@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services;
 
 use App\Repositories\EventosDeportivosRepository;
@@ -15,22 +14,45 @@ class EventosDeportivosService
 
     public function createEvent(array $data)
     {
-        return $this->eventosRepo->create($data);
+        try {
+            return $this->eventosRepo->create($data);
+        } catch (\Exception $e) {
+            throw new \Exception('Error al crear el evento: ' . $e->getMessage());
+        }
     }
 
     public function getAllEvents()
     {
-        return $this->eventosRepo->getAll();
+        try {
+            return $this->eventosRepo->getAll();
+        } catch (\Exception $e) {
+            throw new \Exception('Error al obtener los eventos: ' . $e->getMessage());
+        }
     }
 
     public function getEventById($id)
     {
-        return $this->eventosRepo->getById($id);
+        try {
+            $event = $this->eventosRepo->getById($id);
+            if (!$event) {
+                throw new \Exception("El evento con ID $id no existe.");
+            }
+            return $event;
+        } catch (\Exception $e) {
+            throw new \Exception('Error al obtener el evento: ' . $e->getMessage());
+        }
     }
 
     public function getTotalBetByEvent($eventId)
-{
-    return $this->eventosRepo->getTotalApostado($eventId);
-}
-
+    {
+        try {
+            $evento = $this->eventosRepo->getById($eventId);
+            if (!$evento) {
+                throw new \Exception("El evento con ID $eventId no existe.");
+            }
+            return $this->eventosRepo->getTotalApostado($eventId);
+        } catch (\Exception $e) {
+            throw new \Exception('Error al calcular el total apostado: ' . $e->getMessage());
+        }
+    }
 }

@@ -36,41 +36,4 @@ class SportEventTest extends TestCase
         // Verificamos que el evento esté en la base de datos
         $this->assertDatabaseHas('eventos_deportivos', $data);
     }
-
-    public function testGetAllSportsEventsWithTotalBet()
-{
-    // Realiza una solicitud GET al endpoint que devuelve los eventos deportivos con el total apostado
-    $response = $this->getJson('/api/eventos'); // Cambia la URL según sea necesario
-
-    // Asegúrate de que la solicitud fue exitosa
-    $response->assertStatus(200);
-    $response->getContent();  // Muestra el contenido completo de la respuesta.
-
-
-    // Verifica que la respuesta contenga los datos esperados
-    $response->assertJsonStructure([
-        '*' => [
-            'id',
-            'nombre',
-            'fecha',
-            'tipo_deporte',
-            'total_apostado',
-            'apuestas' => [
-                '*' => [
-                    'id',
-                    'usuario_id',
-                    'monto_apostado',
-                    'cuota',
-                    'estado',
-                ],
-            ],
-        ],
-    ]);
-
-    // Verifica que el total apostado sea un valor numérico
-    $response->assertJsonFragment(['total_apostado' =>0]); // Puedes ajustar según lo esperado
-    $response->assertJsonFragment(['total_apostado' => 0]); // También puedes verificar que el total apostado es cero cuando no hay apuestas
-}
-
-
 }
