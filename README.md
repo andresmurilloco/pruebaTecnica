@@ -74,18 +74,47 @@ http://127.0.0.1:8000
 
 Puedes probar que la API está funcionando correctamente utilizando un navegador o una herramienta como Postman. Accede a la siguiente URL para ver todos los eventos deportivos registrados:
 
-http://127.0.0.1:8000/api/eventos
+Crear Usuario: 
+Endpoint: http://127.0.0.1:8000/api/usuarios
+Body: {
+  "nombre": "Andres",
+  "correo": "andres@example.com",
+  "saldo": 10.15
+}
 
-Esto debería devolver una lista de eventos deportivos si todo está funcionando correctamente.
+Actualizar Usuario:
+Endpoint: http://127.0.0.1:8000/api/usuarios/1
+Body: {
+  "nombre": "Carlos Gómez",
+  "correo": "carlos.gomez@example.com",
+  "saldo": 5000
+}
+
+Nueva apuesta: 
+Endpoint: http://127.0.0.1:8000/api/apuestas
+Body: {
+    "usuario_id": 1,
+    "evento_deportivo_id": 1,
+    "monto_apostado": 1000,
+    "cuota": 2.5,
+    "estado": "pendiente"
+}
+
+Actualizar estado de apuesta:
+Endpoint: http://127.0.0.1:8000/api/apuestas/11
+Body: {
+    "estado": "ganada"
+}
+
+Obtener todas las apuestas del usuario:
+Endpoint: http://127.0.0.1:8000/api/apuestas/usuario/{id}
+
+Obtener todas las apuestas del usuario con filtro:
+Endpoint: http://127.0.0.1:8000/api/apuestas/usuario/1?estado=ganada //Ganada, Perdida o Pendiente
+
+Obtener todos los eventos:
+Endpoint: http://127.0.0.1:8000/api/eventos
 
 Notas adicionales
 
-- Base de datos: Asegúrate de que el servidor de base de datos (MySQL, PostgreSQL, etc.) esté corriendo y configurado correctamente.
-- Autenticación: Si el proyecto utiliza autenticación (como JWT o Passport), sigue los pasos adicionales de configuración que se describan en la documentación del proyecto.
-
-Problemas comunes
-
-- Si recibes un error relacionado con la conexión a la base de datos, asegúrate de que los datos en el archivo .env son correctos y que el servidor de base de datos está en ejecución.
-- Si las migraciones no se ejecutan correctamente, revisa los errores en la terminal y asegúrate de que tu base de datos esté configurada correctamente.
-
-¡Listo! Ahora deberías poder ejecutar el proyecto localmente y empezar a trabajar en él. Si tienes alguna duda o problema, no dudes en revisar los logs de Laravel o consultar con el equipo de desarrollo.
+- Base de datos: Asegúrate de que el servidor de base de datos (MariaDB) esté corriendo y configurado correctamente.
