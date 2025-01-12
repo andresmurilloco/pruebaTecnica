@@ -15,16 +15,27 @@ class EventosDeportivosController extends Controller
     }
 
     public function create(Request $request)
-    {
-        $data = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'fecha' => 'required|date',
-            'deporte' => 'required|string|max:255',
-        ]);
+{
+    // Verifica si la solicitud llega correctamente
+    dd($request->all());
 
-        $event = $this->eventosService->createEvent($data);
-        return response()->json($event, 201);
-    }
+    $data = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'fecha' => 'required|date',
+        'tipo_deporte' => 'required|string|max:255',
+    ]);
+
+    // Verifica los datos validados antes de continuar
+    dd($data);
+
+    $event = $this->eventosService->createEvent($data);
+
+    // Verifica el evento creado antes de la respuesta
+    dd($event);
+
+    return response()->json($event, 201);
+}
+
 
     public function getAll()
 {
