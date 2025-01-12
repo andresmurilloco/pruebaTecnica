@@ -166,7 +166,3 @@ Puedes probar que la API está funcionando correctamente utilizando un navegador
 ### Notas adicionales
 
 - **Base de datos:** Asegúrate de que el servidor de base de datos (MariaDB) esté corriendo y configurado correctamente.
-
----
-
-Este es el formato en texto plano. Si deseas convertirlo en un archivo HTML o cualquier otro formato, simplemente sigue el esquema de la estructura proporcionada.
